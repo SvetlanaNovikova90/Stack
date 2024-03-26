@@ -5,6 +5,10 @@ class WorkingReceipts:
                 'электроснабжение']
 
     def get_inform(self):
+        '''
+        Получние информации из файла
+        :return:
+        '''
         file = []
         with open('checks.txt', 'r') as f:
             for i in f:
@@ -13,6 +17,10 @@ class WorkingReceipts:
         return file
 
     def add_new_file(self):
+        '''
+        Запись информации в новый файл по шаблону
+        :return:
+        '''
         with open('receipts_by_folders.txt', 'a') as file:
             file.truncate(0)
             for i in self.month:
@@ -22,6 +30,10 @@ class WorkingReceipts:
         return f'Файл создан'
 
     def get_one_month(self, month):
+        '''
+        Выбор информации по одному месяцу
+        :return:
+        '''
         all = []
         for f in self.get_inform():
             if month in f:
@@ -29,6 +41,10 @@ class WorkingReceipts:
         return all
 
     def get_not_service(self, all_):
+        '''
+        Выбор услуг, которых нет в месяце
+        :return:
+        '''
         not_serv = []
         for s in self.services:
             if s not in ''.join(all_):
@@ -37,6 +53,10 @@ class WorkingReceipts:
         return not_serv
 
     def lack_of_service(self):
+        '''
+        Печать информации
+        :return:
+        '''
         for m in self.month:
             all_ = self.get_one_month(m)
             not_serv = self.get_not_service(all_)
