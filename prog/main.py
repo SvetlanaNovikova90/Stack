@@ -1,4 +1,4 @@
-from utils import WorkingReceipts
+from prog.utils import WorkingReceipts
 
 if __name__ == '__main__':
     vv = WorkingReceipts()
